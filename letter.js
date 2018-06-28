@@ -10,7 +10,7 @@ function letter(currletter) {
     }
     this.checkGuess = function (guess) {
         if (guess === this.underlyingChar) {
-            console.log("yes");
+            console.log("CORRECT!!");
             this.guessed = true;
             this.toString();
         }

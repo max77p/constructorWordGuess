@@ -41,6 +41,9 @@ var startGame = function () {
             word1.returnChar();
             word1.toString();
             letterObj=word1.letterArr;
+            for(ele in letterObj){
+                tempObj.push(letterObj[ele].underlyingChar);
+            }
             inquire();
         } else {
             console.log("\nSad to see you go! Next time then!\n");
@@ -52,24 +55,28 @@ startGame();
 var guessLeft = 0;
 var letterObj;
 var allGuessed=[];
+var tempObj=[];
 
 /*---------------------picking a letter after game starts------------------------ */
 var checkinput = function (answer) {
     console.log("\nyou picked " + answer.letter);
     console.log("You have "+(10-guessLeft)+" guesses remaining\n")
-    word1.guessString(answer.letter);
+    if(tempObj.indexOf(answer.letter.toLowerCase())<0){
+        console.log("INCORRECT!!!");
+    }
+    word1.guessString(answer.letter.toLowerCase());
+    // console.log(word1);
     word1.toString();
     inquire();
 }
 function inquire() {
-    console.log(letterObj.length);
+    // console.log(letterObj.length);
     allGuessed=[];
     for(ele in letterObj){
         if(letterObj[ele].guessed){
         allGuessed.push(true);
         }
     }
-
     if(allGuessed.length==letterObj.length && guessLeft<=10){
         console.log("\n***********--YES! YOU WON!--***********\n");
         restartGame();
