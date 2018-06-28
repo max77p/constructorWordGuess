@@ -15,17 +15,17 @@ var pickcategory = function () {
     var selection;
     //console.log(keywords);
     var getrandomcategory = keywords[Math.floor(Math.random() * keywords.length)];
-    // hint(getrandomcategory);
+    currentHint=getrandomcategory;
     var wordsforCategory = words[getrandomcategory];
     temprandomword = wordsforCategory[Math.floor(Math.random() * wordsforCategory.length)]
     var temphangmanarr = temprandomword.toLowerCase().split("")
     return temphangmanarr;
 }
-var wordToUse = pickcategory().join("");
+
 // console.log(x);
 
 var word1;
-
+var currentHint;
 
 var startGame = function () {
     guessLeft=0;
@@ -36,7 +36,9 @@ var startGame = function () {
     }]).then(function (answer) {
         if (answer.startGame) {
             console.log("Let's begin!");
-            console.log(wordToUse);
+            var wordToUse = pickcategory().join("");
+            console.log("Your category is: "+ currentHint);
+            // console.log(wordToUse);
             word1 = new word.wordKey(wordToUse);
             word1.returnChar();
             word1.toString();
